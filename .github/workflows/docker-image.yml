@@ -18,8 +18,10 @@ jobs:
         node-version: '17'
         cache: 'yarn'
     - run: corepack enable
-    - run: yarn install
-#    - run: yarn lint
+    #- run: yarn install
+    - name: Install Yarn
+    - run: npm install -g yarn
+    - run: yarn
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
