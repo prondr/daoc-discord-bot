@@ -18,10 +18,6 @@ jobs:
         node-version: '17'
         cache: 'yarn'
     - run: corepack enable
-    - name: Install Yarn
-    - run: curl -fsSL -o ~/bin/yarn https://github.com/yarnpkg/yarn/releases/download/v1.22.17/yarn-1.22.17.js
-    - run: chmod +x ~/bin/yarn
-    - run: yarn
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
