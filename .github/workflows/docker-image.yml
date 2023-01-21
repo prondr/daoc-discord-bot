@@ -13,6 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '17'
+        cache: 'yarn'
+    - run: corepack enable
+    - run: yarn install
+    - run: yarn lint
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
